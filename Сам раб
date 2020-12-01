@@ -1,0 +1,25 @@
+#include <stdio.h>
+ 
+ 
+int main() {
+   int zc[ 10 ] = { 0 },
+                i = 0;
+   long long int ch = 0;
+   
+   
+   printf( "Enter the number: " );
+   scanf( "%lld", &ch );
+ 
+   if ( !ch )
+      zc[ 0 ]++;
+ 
+   while ( ch ) {
+      zc[ ch % 10 ]++;
+      ch /= 10;
+   }
+   printf( "I create a number according to the following rule: the number of digits 0 in the number, digits 1, digits 2, and so on up to 9.\n");
+   for ( i = 0; i < 10; i++ )
+      printf( "%d ",zc[ i ]);
+   
+   return 0;
+}
