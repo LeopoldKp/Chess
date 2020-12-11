@@ -1,0 +1,234 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct thing
+{
+  int barcode;
+  char name[10];
+  int cost;
+  float discount;
+  float total;
+  int num;
+};
+float a,b,c;
+void addcheese()
+    {   
+        struct thing obj = { 8562,"cheese", 63, 0.4 };
+	    printf ("enter number:");
+	    scanf ("%d", &obj.num);
+	    printf ("\n %s %d info:\n",obj.name, obj.barcode);
+	    printf ("-------------------\n");
+	    printf ("cost %d\n", obj.cost);
+	    printf ("number %d\n", obj.num);
+	    printf ("discount %f\n", obj.discount);
+	    float total = obj.num * obj.cost - obj.num * obj.cost * obj.discount;
+	    obj.total=total;
+	    printf ("total: %f\n", obj.total);
+	    a=a+total;
+	    c=c+obj.cost*obj.num;
+    }
+    
+void addsausage()
+    {
+        struct thing obj = { 7683,"sausage", 67, 0.5 };
+	    printf ("enter number:");
+	    scanf ("%d", &obj.num);
+	    printf ("\n %s %d info:\n",obj.name, obj.barcode);
+	    printf ("-------------------\n");
+	    printf ("cost %d\n", obj.cost);
+	    printf ("number %d\n", obj.num);
+	    printf ("discount %f\n", obj.discount);
+	    float total = obj.num * obj.cost - obj.num * obj.cost * obj.discount;
+	    obj.total=total;
+	    printf ("total: %f\n", obj.total);
+	    a=a+total;
+	    c=c+obj.cost*obj.num;
+    }
+    
+void addmilk()
+    {
+        struct thing obj = { 4879,"milk", 50, 0.4 };
+	    printf ("enter number:");
+	    scanf ("%d", &obj.num);
+	    printf ("\n %s %d info:\n",obj.name,obj.barcode);
+	    printf ("-------------------\n");
+	    printf ("cost %d\n", obj.cost);
+	    printf ("number %d\n", obj.num);
+	    printf ("discount %f\n", obj.discount);
+	    float total = obj.num * obj.cost - obj.num * obj.cost * obj.discount;
+	    obj.total=total;
+	    printf ("total: %f\n", obj.total);
+	    a=a+total;
+	    c=c+obj.cost*obj.num;
+    }
+    
+void addflour()
+    {
+        struct thing obj = { 2528, "flour", 20, 0.1 };
+	    printf ("enter number:");
+	    scanf ("%d", &obj.num);
+	    printf ("\n %s %d info:\n",obj.name,obj.barcode);
+	    printf ("-------------------\n");
+	    printf ("cost %d\n", obj.cost);
+	    printf ("number %d\n", obj.num);
+	    printf ("discount %f\n", obj.discount);
+	    float total = obj.num * obj.cost - obj.num * obj.cost * obj.discount;
+	    obj.total=total;
+	    printf ("total: %f\n", obj.total);
+	    a=a+total;
+	    c=c+obj.cost*obj.num;
+    }
+    
+void addsugar()
+    {
+        struct thing obj = { 9492, "sugar",37, 0.2 };
+	    printf ("enter number:");
+	    scanf ("%d", &obj.num);
+	    printf ("\n %s %d info:\n",obj.name, obj.barcode);
+	    printf ("-------------------\n");
+	    printf ("cost %d\n", obj.cost);
+	    printf ("number %d\n", obj.num);
+	    printf ("discount %f\n", obj.discount);
+	    float total = obj.num * obj.cost - obj.num * obj.cost * obj.discount;
+	    obj.total=total;
+	    printf ("total: %f\n", obj.total);
+	    a=a+total;
+	    c=c+obj.cost*obj.num;
+    }
+    
+void addsalt()
+    {
+        struct thing obj = { 1836, "salt", 36, 0.2 };
+	    printf ("enter number:");
+	    scanf ("%d", &obj.num);
+	    printf ("\n %s %d info:\n",obj.name, obj.barcode);
+	    printf ("-------------------\n");
+	    printf ("cost %d\n", obj.cost);
+	    printf ("number %d\n", obj.num);
+	    printf ("discount %f\n", obj.discount);
+	    float total = obj.num * obj.cost - obj.num * obj.cost * obj.discount;
+	    obj.total=total;
+	    printf ("total: %f\n", obj.total);
+	    a=a+total;
+	    c=c+obj.cost*obj.num;
+    }
+    
+void addbread()
+    {   
+        struct thing obj = { 8282, "bread", 12, 0.1 };
+	    printf ("enter number:");
+	    scanf ("%d", &obj.num);
+	    printf ("\n %s %d info:\n",obj.name, obj.barcode);
+	    printf ("-------------------\n");
+	    printf ("cost %d\n", obj.cost);
+	    printf ("number %d\n", obj.num);
+	    printf ("discount %f\n", obj.discount);
+	    float total = obj.num * obj.cost - obj.num * obj.cost * obj.discount;
+	    obj.total=total;
+	    printf ("total: %f\n", total);
+	    a=a+total;
+	    c=c+obj.cost*obj.num;
+    }
+    
+void addwater()
+    {   
+        struct thing obj = { 7222,"water", 7, 0.1 };
+	    printf ("enter number:");
+	    scanf ("%d", &obj.num);
+	    printf ("\n %s %d info:\n",obj.name,obj.barcode);
+	    printf ("-------------------\n");
+	    printf ("cost %d\n", obj.cost);
+	    printf ("number %d\n", obj.num);
+	    printf ("discount %f\n", obj.discount);
+	    float total = obj.num * obj.cost - obj.num * obj.cost * obj.discount;
+	    obj.total=total;
+	    printf ("total: %f\n", obj.total);
+	    a=a+total;
+	    c=c+obj.cost*obj.num;
+    }
+    
+int savecheck()
+    {
+        FILE *fc;
+        struct thing obj;
+        fc = fopen("check.txt","a+");
+        fprintf(fc,"tovar %s (%d) ------------------%f\n%d rub\n%d num\n%f discount\n\n", obj.name, obj.barcode, obj.total, obj.cost, obj.num,obj.discount);
+        fclose(fc);
+    }
+
+int main (void)
+{ 
+  extern float a;
+  FILE *fc;
+  int answer = 0, barcode;
+  printf
+    ("Welcome to the store for the poor.So far we have: water 7222, bread 8282, salt 1836, sugar 9492, flour 2528, milk 4879, sausage 7683, cheese 8562. Perhaps someday the range will increase.\n");
+  printf
+    ("---------------------------------------------------------------------------------------\n");
+  while (answer != 2)
+    {
+      printf ("Enter the barcode of the product\n");
+      scanf ("%d", &barcode);
+      switch (barcode)
+	{
+	case 7222:
+	  {
+	    addwater();
+	    savecheck();
+	    break;
+	  }
+	case 8282:
+	  {
+	    addbread();
+	    savecheck();
+	    break;
+	  }
+	case 1836:
+	  {
+	    addsalt();
+	    savecheck();
+	    break;
+	  }
+	case 9492:
+	  {
+	    addsugar();
+	    savecheck();
+	    break;
+	  }
+	case 2528:
+	  {
+	    addflour();
+	    savecheck();
+	    break;
+	  }
+	case 4879:
+	  {
+	    addmilk();
+	    savecheck();
+	    break;
+	  }
+	case 7683:
+	  {
+	    addsausage();
+	    savecheck();
+	    break;
+	  }
+	case 8562:
+	  {
+	    addcheese();
+	    savecheck();
+	    break;
+	  }
+	default:
+	  printf ("error");
+	}
+      printf ("proceed to payment?\n");
+      printf ("1. no.        ");
+      printf ("2. yes\n");
+      scanf ("%d", &answer);
+    }
+b=(c-a)/c;
+fc = fopen("check.txt","a+");
+fprintf(fc,"------------------------------------------\ntotal itog: %f\ntotal discount: %f",a,b);
+fclose(fc);
+system("pause");
+}
