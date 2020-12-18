@@ -1,0 +1,265 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int n=0, r2,input,l;
+float x,r1, eps1,eps2, s=0,f=1;
+const float k=3.14/180;
+
+void vybor()
+{
+    printf("vyberite funkciyu:\n");
+    printf("1. sin(x)\n");
+    printf("2. cos(x)\n");
+    printf("3. exp(x)\n");
+    printf("4. arctg(x)\n");
+    scanf("%d", &input);
+}
+
+void vvod1()
+{
+    printf("vvedite x:");
+    scanf("%f",&x);
+    printf("zadaite tochnost vychisleniy (min/max) (0.000001+..):\n");
+    scanf("%f%f",&eps1,&eps2);
+    if ((eps1>eps2)||(eps1<0.000001)||(eps2<0.000001))
+        {
+            printf("error\n");
+            exit;
+        }
+    else
+        {
+            printf("zadaite chislo elementov (min/max) (1--1000):\n");
+            scanf("%f%d", &r1,&r2);
+            if ((r1<=r2)&&(r1>=1)&&(r2<=1000)) printf("vychislyayu..\n");
+            else
+                {
+                    printf("error\n");
+                    exit;
+                }
+                
+        }
+}
+
+void vvod2()
+{
+    printf("vvedite x:");
+    scanf("%f",&x);
+    printf("zadaite tochnost vychisleniy (min/max) (0.000001+..):\n");
+    scanf("%f%f",&eps1,&eps2);
+    if ((eps1>eps2)||(eps1<0.000001)||(eps2<0.000001))
+        {
+            printf("error\n");
+            l=1;
+            exit(1);
+        
+        }
+    else
+        {
+            printf("zadaite chislo elementov (min/max) (1--25):\n");
+            scanf("%f%d", &r1,&r2);
+            if ((r1<=r2)&&(r1>=1)&&(r2<=25)) printf("vychislyayu..\n");
+            else
+                {
+                    printf("error\n");
+                    l=1;
+                    exit(1);
+                }
+                
+        }
+}
+
+void sinus1()
+{
+    while (fabs(r1)>eps2)
+        {
+            s=s+r1;
+            f=f*(2*n+1);
+            r1= pow(-1,n)*(pow(x*k,2*n+1)/f);
+            n=n+1;
+        }
+}
+
+void sinus2()
+{
+    while (fabs(r1)>eps2)
+        {   
+            printf("%d  %f  %f\n",n+1, s,fabs(sin(x*k)-s));
+            s=s+r1;
+            f=f*(2*n+1);
+            r1= pow(-1,n)*(pow(x*k,2*n+1)/f);
+            n=n+1;
+        }
+}
+
+void cosinus1()
+{
+    while (fabs(r1)>eps2)
+        {
+            s=s+r1;
+            f=f*(2*n);
+            r1= pow(-1,n)*(pow(x*k,2*n)/f);
+            n=n+1;
+        }
+}
+
+void cosinus2()
+{
+    while (fabs(r1)>eps2)
+        {   
+            printf("%d  %f  %f\n",n+1, s,fabs(cos(x*k)-s));
+            s=s+r1;
+            f=f*(2*n);
+            r1= pow(-1,n)*(pow(x*k,2*n)/f);
+            n=n+1;
+        }
+}
+
+void exponenta1()
+{
+    while (fabs(r1)>eps2)
+        {
+            s=s+r1;
+            f=f*(n);
+            r1= pow(x,n)/f;
+            n=n+1;
+        }
+}
+
+void exponenta2()
+{
+    while (fabs(r1)>eps2)
+    {   
+        printf("%d  %f  %f\n",n+1, s,fabs(exp(x)-s));
+        s=s+r1;
+        f=f*(n);
+        r1= pow(x,n)/f;
+        n=n+1;
+    }
+}
+
+void arctang1()
+{
+   while (fabs(r1)>eps2)
+        {
+            s=s+r1;
+            r1= pow(-1,n)*(pow(x*k,2*n+1)/(2*n+1));
+            n=n+1;
+        } 
+}
+
+void arctang2()
+{
+   while (fabs(r1)>eps2)
+        {
+            printf("%d  %f  %f\n",n+1, s,fabs(atan(x*k)-s));
+            s=s+r1;
+            r1= pow(-1,n)*(pow(x*k,2*n+1)/(2*n+1));
+            n=n+1;
+        } 
+}
+
+void mode1()
+{
+    vybor();
+    switch(input)
+        {
+            case 1:
+                    {
+                        vvod1();
+                        sinus1();
+                        printf("chislo shagov vypolneniya: %d\npriblizhennoye znacheniye: %f\nabsolutnoye znacheniye: %f\npogreshnost: %f\n",n, s, sin(x*k),fabs(sin(x*k)-s));
+                        break;
+                    }
+            case 2:
+                    {
+                        vvod1();
+                        cosinus1();
+                        printf("chislo shagov vypolneniya: %d\npriblizhennoye znacheniye: %f\nabsolutnoye znacheniye: %f\npogreshnost: %f\n",n, s, cos(x*k),fabs(cos(x*k)-s));
+                        break;
+                    }
+            case 3:
+                    {
+                        vvod1();
+                        exponenta1();
+                        printf("chislo shagov vypolneniya: %d\npriblizhennoye znacheniye: %f\nabsolutnoye znacheniye: %f\npogreshnost: %f\n",n, s, exp(x),fabs(exp(x)-s));
+                        break;
+                    }
+            case 4:
+                    {
+                        vvod1();
+                        arctang1();
+                        printf("chislo shagov vypolneniya: %d\npriblizhennoye znacheniye: %f\nabsolutnoye znacheniye: %f\npogreshnost: %f\n",n, s, atan(x*k),fabs(atan(x*k)-s));
+                        break;
+                    }
+            default:
+                    {
+                        printf("error");
+                        break;
+                    }
+        }
+}
+
+void mode2()
+{
+    vybor();
+    switch(input)
+        {
+                case 1:
+                        {
+                            vvod2();
+                            sinus2();
+                            break;
+                        }
+                case 2:
+                        {
+                            vvod2();
+                            cosinus2();
+                            break;
+                        }
+                case 3:
+                        {
+                            vvod2();
+                            exponenta2();
+                            break;
+                        }
+                case 4:
+                        {
+                            vvod2();
+                            arctang2();
+                            break;
+                        }
+                default:
+                        {
+                            printf("error");
+                            break;
+                        }
+        }
+}
+
+int main()
+{
+    printf("vyberite rezhim: 1 --- 2\n");
+    printf("1. odnokratno\n");
+    printf("2.seriyno\n");
+    scanf("%d",&input);
+    switch(input)
+        {
+            case 1:
+                    {
+                        mode1();
+                        break;
+                    }
+            case 2:
+                    {
+                        mode2();
+                        break;
+                    }
+            default: 
+                    {
+                        printf("error");
+                        break;
+                    }
+        }
+    return 0;
+}
