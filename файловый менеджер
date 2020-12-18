@@ -1,0 +1,239 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+static int count=0;
+typedef struct fyle_menedger 
+{
+    char name[28+1]; 
+    char type[28+1];
+    char size[28+1];
+}menedger;
+char mus_hran[128];
+
+void vypis_chel(menedger* p)
+{ 
+    printf("%-28s %-28s       %-28s\n",p->name,p->type,p->size); 
+}
+ 
+menedger hran_chel()
+{
+    menedger p;
+    int k=0;
+    printf("name          :");
+    fgets(p.name,28,stdin);
+    p.name[strlen(p.name)-1]=0; 
+    if(p.name[0]>=97 && p.name[0]<=122) p.name[0]-=32;
+    for(k=0;k<=strlen(p.name)-1;k++)
+        {
+            if(k!=0 && p.name[k]>=65 && p.name[k]<=90) p.name[k]+=32;
+            if((p.name[k]>=33 && p.name[k]<=44) || (p.name[k]>=46 && p.name[k]<=64) || (p.name[k]>=91 && p.name[k]<=96) || (p.name[k]>=123 && p.name[k]<=127))
+            p.name[k]=1;
+        }
+        printf("type       :");  
+        fgets(p.type,28,stdin);
+        p.type[strlen(p.type)-1]=0;
+        if(p.type[0]>=97 && p.type[0]<=122) p.type[0]-=32;
+        for(k=0;k<=strlen(p.type)-1;k++)
+            {
+                if(k!=0 && p.type[k]>=65 && p.type[k]<=90) p.type[k]+=32;
+                if((p.type[k]>=33 && p.type[k]<=44) || (p.type[k]>=46 && p.type[k]<=64) || (p.type[k]>=91 && p.type[k]<=96) || (p.type[k]>=123 && p.type[k]<=127))
+                p.type[k]=1;
+            }
+        printf("size(kb)  :"); fgets(p.size,28,stdin);p.size[strlen(p.size)-1]=0;
+        if (!( p.size[0]=='+' || (p.size[0] > 47 && p.size[0] < 58))) p.size[0]=32; 
+        for(k=1;k<=strlen(p.size)-1;k++)
+            {
+                if(p.size[k] <= 47 || p.size[k] >= 58)
+                p.size[k]=0;
+            } 
+        return p;
+}
+ 
+void sortier_name(menedger* a)
+{     
+    menedger* tmp;
+    int n,m;
+    for(n=1;n<count;n++)
+    for(m=0;m<count-n;m++)
+        {
+            int  code=strcmp(a[m+1].name,a[m].name);         
+            if(code<0)
+            {
+                tmp=malloc(sizeof(menedger));
+                if(tmp!=NULL)
+                    {            
+                        *tmp=a[m];
+                        a[m]=a[m+1];
+                        a[m+1]=*tmp;
+                        free(tmp);
+                    } 
+                else printf("\nError!");
+            }
+        }
+}
+
+void sortier_type(menedger* a)
+{     
+    menedger* tmp;
+    int n,m;
+    for(n=1;n<count;n++)
+        for(m=0;m<count-n;m++)
+        {
+            int  code=strcmp(a[m+1].type,a[m].type);         
+            if(code<0)
+            {
+                tmp=malloc(sizeof(menedger));
+                if(tmp!=NULL)
+                    {            
+                        *tmp=a[m];
+                        a[m]=a[m+1];
+                        a[m+1]=*tmp;
+                        free(tmp);
+                    } 
+                else printf("\nError!");
+            }
+        }
+}
+
+void sortier_size(menedger* a)
+{     
+    menedger* tmp;
+    int n,m;
+    for(n=1;n<count;n++)
+        for(m=0;m<count-n;m++)
+        {
+            int  code=strcmp(a[m+1].size,a[m].size);         
+            if(code<0)
+            {
+                tmp=malloc(sizeof(menedger));
+                if(tmp!=NULL)
+                    {            
+                        *tmp=a[m];
+                        a[m]=a[m+1];
+                        a[m+1]=*tmp;
+                        free(tmp);
+                    } 
+                else printf("\nError!");
+            }
+        }
+}
+
+int main()
+{
+    int i=0,j=0;
+    menedger* fyle;
+    char input;
+    printf("failovyi menedger gotov k rabote /name type size/\n");
+    printf("vvodite info:\n"); 
+    fyle=malloc(sizeof (menedger));
+    
+    while(1)
+        {
+            int n,m;
+            fyle[count]=hran_chel(); count ++;
+            printf("kak sortirivat' budesh: 1. name          2.type           3. size     ");
+            scanf(" %1c",&input);
+            switch(input)
+                {
+                    case 1:
+                            {
+                                sortier_name(fyle); break;
+                                
+                            }
+                    case 2:
+                            {
+                                sortier_type(fyle); break;
+                                
+                            }
+                    case 3:
+                            {
+                                sortier_size(fyle); break;
+                                
+                            }
+                    default:
+                        break;
+                }
+            for (i=0;i<count;i++) vypis_chel(fyle+i);
+            do 
+                {
+                    printf("hotite dobavit' eche odnu zapis' o failah? (d/n):");
+                    fgets(mus_hran,128,stdin);
+                } 
+            while (mus_hran[0] != 'd' && mus_hran[0] != 'n');
+            if(mus_hran[0]=='n') break; 
+            if(mus_hran[0]=='d')
+                {
+                    fyle=realloc(fyle,sizeof(menedger)*(count+1));
+                    if(fyle==NULL) 
+                    {
+                        printf("udachi, nichego ne rabotaet ;)\n");
+                        exit(1);
+                    }
+                }
+        }
+    
+    while(1)
+        {
+            char name_ok[28+1];
+            int temp=0;
+            printf("nachnem poisk po name, vvedite\n");
+            fgets(name_ok,28,stdin);name_ok[strlen(name_ok)-1]=0;
+            fyle=realloc(fyle,sizeof(menedger)*(count+1));
+            for(i=0;i<count;i++)
+                {
+                    if(strcmp(fyle[i].name,name_ok)==0) 
+                        {
+                            printf("%-28s %-28s       %-28s\n",fyle[i].name,fyle[i].type,fyle[i].size);
+                            temp=1;
+                        } 
+                }
+        if(temp==0)  printf("ai oi, takogo faila net\n");
+        break;
+        }
+    
+    printf("teper' davaite chto-nibud' udalim. vvedite ego name\n");
+
+    while(1)
+        {
+            char name_ok[28+1];
+            int temp=0;
+            fgets(name_ok,28,stdin);name_ok[strlen(name_ok)-1]=0;
+            fyle=realloc(fyle,sizeof(menedger)*(count+1));
+            for(i=0;i<count;i++)
+                {
+                    if(strcmp(fyle[i].name,name_ok)==0) 
+                        {
+                            printf("%-28s %-28s       %-28s\n",fyle[i].name,fyle[i].type,fyle[i].size);
+                            printf("teper' on ischez iz bazy, mozhete ubeditcya:\n");
+                            memset(&fyle[i].name,0,sizeof(fyle[i].name));
+                            memset(&fyle[i].type,0,sizeof(fyle[i].type));
+                            memset(&fyle[i].size,0,sizeof(fyle[i].size));
+                            temp=1;
+                        }
+                }
+            if(temp==0)  printf("ai oi, takogo faila net\n");
+            break;
+        }
+    
+    while(1)
+        {
+            char name_ok[28+1];
+            int temp=0;
+            printf("nachnem poisk po name, vvedite\n");
+            fgets(name_ok,28,stdin);name_ok[strlen(name_ok)-1]=0;
+            fyle=realloc(fyle,sizeof(menedger)*(count+1));
+            for(i=0;i<count;i++)
+                {
+                    if(strcmp(fyle[i].name,name_ok)==0) 
+                        {
+                            printf("%-28s %-28s       %-28s\n",fyle[i].name,fyle[i].type,fyle[i].size);
+                            temp=1;
+                        } 
+                }
+            if(temp==0)  printf("ai oi, takogo faila net\n");
+            break;
+        }
+    
+return 0;
+}
