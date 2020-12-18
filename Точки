@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <locale.h>
+#define n 2
+#define m 6
+int main()
+{
+    int mat[n][m]={{2,6,2,5,8,2},{1,0,0,0,0,0}};
+    int min,max,i,j,k,z,f=0,chet=0;
+    for (i=0;i<n;i++) 
+        {
+            min=mat[i][0];
+            for (z=1;z<m;z++)
+                {
+                    if ( mat[i][z]<min )
+                        {
+                           min=mat[i][z]; 
+                        }
+                }
+            for( j=0;j<m;j++)
+                {
+                    if ( mat[i][j]==min)
+                        {  
+                            max=mat[0][j];
+                            for (k=1;k<n;k++) 
+                                {
+                                    if ( mat[k][j]>max ) 
+                                        { 
+                                            max= mat[k][j];
+                                        }
+                                }
+                                   if (mat[i][j]==max)
+                                   {  
+                                        chet++;
+                                        printf( "sedlovaya tochka[%d][%d]=%d\n", i, j, mat[i][j] ); 
+                                        f=1;
+                                   }
+                        }
+                }
+        }
+    printf("%d",chet);
+    if(!f)printf("Matrica okazalas bez sedlovyh tochek\n"); 
+    system("pause");
+    return (0);
+}
