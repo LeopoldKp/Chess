@@ -1,0 +1,13 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(39,5): warning MSB4211: Свойству "IntermediateOutputPath" в первый раз присваивается значение, но оно уже было использовано в "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets (38,5)".
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.BuildSteps.Targets(29,5): warning MSB4211: Свойству "DebugType" в первый раз присваивается значение, но оно уже было использовано в "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.BuildSteps.Targets (28,5)".
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin\Microsoft.Common.CurrentVersion.targets(370,5): warning MSB4211: Свойству "CleanFile" в первый раз присваивается значение, но оно уже было использовано в "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets (38,5)".
+cl : командная строка warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  tel_book_find.cpp
+C:\Users\tanap\Desktop\tel_book\tel_book\tel_book_find.cpp(335,27): warning C4018: >: несоответствие типов со знаком и без знака
+C:\Users\tanap\Desktop\tel_book\tel_book\tel_book_find.cpp(312,15): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+C:\Users\tanap\Desktop\tel_book\tel_book\tel_book_find.cpp(313,21): warning C4996: 'getch': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _getch. See online help for details.
+C:\Users\tanap\Desktop\tel_book\tel_book\tel_book_find.cpp(392,16): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\tanap\Desktop\tel_book\tel_book\tel_book_find.cpp(407,12): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\tanap\Desktop\tel_book\tel_book\tel_book_find.cpp(411,12): warning C4018: <: несоответствие типов со знаком и без знака
+main.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  tel_book.vcxproj -> C:\Users\tanap\Desktop\tel_book\Debug\tel_book.exe
